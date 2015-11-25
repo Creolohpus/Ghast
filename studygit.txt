@@ -1,0 +1,44 @@
+if git add warning：lf will be replaceed by crlf in
+输入：git config core.autocrlf false
+
+$git deploy
+$git config --global user.name Creolohpus
+$git config --global user.email Creolohpus@qq.com
+
+什么是版本库？版本库又名仓库，英文名repository,你可以简单的理解一个目录，
+这个目录里面的所有文件都可以被Git管理起来，每个文件的修改，删除，Git都能跟踪，
+以便任何时刻都可以追踪历史，或者在将来某个时刻还可以将文件”还原”。
+
+
+1.create repository
+
+比如在D盘下新建一个名字为creolohpusgit的版本库
+
+$cd d:
+$mkdir creolohpusdit
+$cd creolohpusgit 
+
+$pwd //显示当前目录
+
+$git init //初始化 也就是把目录变为git 管理的仓库
+
+2.文件添加到版本库中
+ 先在creolohpusgit 目录下建立一个readme的文本文件 内容为study git
+
+ git add readme.txt  //添加到暂存区
+  
+ git commit -m "备注" //提交
+
+ git status           //查看状态 看是否有没有提交的文件
+
+ 如果我们更改readme.txt
+
+ git status    //它会告诉我们，文件被修改，未被提交
+
+ git diff readme.txt //会告诉我们，修改了什么信息
+
+ 然后我们可以add commit
+
+
+
+
