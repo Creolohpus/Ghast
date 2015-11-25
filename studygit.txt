@@ -93,5 +93,137 @@ modified 修改
 （先add commit 然后再恢复）
 
 这有一个命令。git checkout --file可以丢弃在工作区的修改
-$ git checkout --readme.txt
+$ git checkout -- readme.txt //工作区做的修改全部撤销
+我们会发现我们添加的555555木有了 
+
+命令 git checkout –readme.txt 意思就是，
+把readme.txt文件在工作区做的修改全部撤销，这里有2种情况，如下：
+readme.txt自动修改后，还没有放到暂存区，使用 撤销修改就回到和版本库一模一样的状态。
+另外一种是readme.txt已经放入暂存区了，接着又作了修改，撤销修改就回到添加暂存区后的状态。
+
+2.删除文件
+
+假如我现在版本库creolohpusgit目录添加一个文件b.txt,然后提交。如下：
+
+$git add b.txt
+$git commit -m "提交b.txt"
+$rm b.txt //可以在目录下删除b.txt 或者是还用rm b.txt 
+$git status  //这是我们可以有2个选择。一个是提交删除。 另外一个是从版本库中把b.txt恢复过来
+
+
+
+----------------------------------------------------------------------------------------
+远程仓库 、
+
+GITHUB 注册  实现本地git仓库和gitgub之间的数据同步
+
+俩者之间的数据传输是SSH加密的 
+
+1.检查看否有ssh keys是否存在
+# Lists the files in your .ssh directory, if they exist
+$ls -al ~/.ssh 
+
+2.创建SSH KEY
+3.在git bush下
+输入：
+ssh-keygen  -t rsa –C “youremail@example.com
+//填入ssh生成目录 
+Enter file in which to save the key (/c/Users/ZhiSheng/.ssh/id_rsa):
+Created directory '/c/Users/ZhiSheng/.ssh'.
+//输入密码 
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/ZhiSheng/.ssh/id_rsa.
+Your public key has been saved in /c/Users/ZhiSheng/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:Gj0MgkeU7RW2qRa2eyTY/ws07zmzL8ScFHt/cqH+ElQ creolohpus@qq.com
+The key's randomart image is:
++---[RSA 2048]----+
+|   .oo  o.       |
+|   o. ...o.    E |
+|  . o.+.o  o  .  |
+|   . =.B  o .. . |
+|    . B S+ o... .|
+|     . O +=  oo o|
+|      o +.. . .+ |
+|       . ++. o   |
+|          *B. o. |
++----[SHA256]-----+
+.ssh现在在(/c/Users/ZhiSheng里
+里面有俩个文件 id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+
+4.登陆github https://github.com/settings/ssh 进入
+点击add ssh key
+填入title 要填自己喜欢的哟
+然后把id_rsa中的内容粘到key中 
+点击Add key
+就可以可以看到已经添加的key了
+
+本地的git仓库和远程github进行远程同步。
+
+本地git-->github
+create a new repository
+repository name 中填写名称
+create repository
+
+然后我们可以在这个repository中看到
+set in desktop or http ssh https://github.com/creolohpus/githubrepostiory.git
+
+在本地gitbash中 
+$git remote add origin http ssh https://github.com/creolohpus/githubrepostiory.git
+
+上面的要输入github的用户名和密码
+
+$git push -u origin master
+
+把本地库的内容推送到远程，使用 git push命令，实际上是把当前分支master推送到远程。
+
+由于远程库是空的，我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+推送成功后，可以立刻在github页面中看到远程库的内容已经和本地一模一样了
+
+github-->本地git
+
+github中新建一个repository，创建时勾选Initialize this repository with a README
+勾选后会自动生成readme.md 文件
+
+$git clone https:/github.com/creolohpus/githubrepostiory
+
+
+接着我们本地在git下面会生成一个创建库的目录githubrepostiory
+------------------------------------------------------------------------------
+创建和合并分支
+
+
+在  版本回退里，你已经知道，每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
+
+$git checkout -b gev  //-b 创建并且切换
+$git branch   //查看所有分支
+*dev
+master
+$cat readme.txt 
+可以看到readme内容
+然后在readme中添加内容7777
+$cat readme.txt  我们可以看到内容
+
+$git add readme.txt
+$git commit -m "dev分支上添加内容777"
+
+$git checkout master
+$cat readme.txt
+我们看不到777的内容 
+-说明在一个分支上所做的操作其他分支是看不到的
+
+现在我们把dev分支上的内容合并到分支master上
+可以在master分支上 如下操作
+
+$qit merge dev
+$cat readme.txt
+我们可以看到777了
+
+
+
+
+
+
 
