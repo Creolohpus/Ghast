@@ -170,7 +170,7 @@ create repository
 set in desktop or http ssh https://github.com/creolohpus/githubrepostiory.git
 
 在本地gitbash中 
-$git remote add origin http ssh https://github.com/creolohpus/githubrepostiory.git
+$git remote add origin  https://github.com/creolohpus/githubrepostiory.git
 
 上面的要输入github的用户名和密码
 
@@ -217,12 +217,33 @@ $cat readme.txt
 现在我们把dev分支上的内容合并到分支master上
 可以在master分支上 如下操作
 
-$qit merge dev
+$git merge dev
 $cat readme.txt
 我们可以看到777了
 
+删除dev分支
+$git branch -d dev
+$git branch 
 
+//上面这个例子说明。如我们有很多工作同时开展的时候，一个做页面， 一个做服务，可以在不同的分支上操作。最后合并提交给用户
+查看分支：git branch
 
+创建分支：git branch name
+
+切换分支：git checkout name
+
+创建+切换分支：git checkout –b name
+
+合并某分支到当前分支：git merge name
+
+删除分支：git branch –d name
+
+----------------------------------------------------------------------------------
+
+如何解决冲突
+
+先创建分支分支1.
+在readme中添加8
 
 
 
